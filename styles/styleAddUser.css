@@ -1,0 +1,84 @@
+.Input_title, #formTitle{
+    font-family:'nunito black' ,sans-serif;
+    font-weight: bold;
+    color: #2b2d42;
+    text-align: center;
+    position: relative;
+    top: -50px;
+}
+#formTitle{
+	text-align: center;
+    position: relative;
+    top: 30px;
+}
+.Input_title{
+    font-size: 20px;
+    margin-left : 20%;
+    margin-top:10px;
+}
+form{
+    margin-top:5%;
+    margin-bottom: 0;
+}
+
+.input_box{
+    position: relative;
+    top: -50px;
+    width: 60%;
+    padding: 12px 20px;
+    margin-left : 20%;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 2px solid #C0C0C0;
+}
+#submit {
+    position: relative;
+    top: -40px;
+    background-color: #00D9A5;
+    color: white;
+    padding: 12px 20px;
+    margin-left : 20%;
+    margin-bottom:0;
+    border-radius: 12px;
+    border: 2px solid #C0C0C0;
+    cursor: pointer;
+    width: 60%;
+    font-family:'nunito black' ,sans-serif;
+}
+#login
+{
+    position: relative;
+    top: -60px;
+    background-color: #00D9A5;
+    color: white;
+    padding: 12px 20px;
+    margin-left: 20%;
+    margin-bottom:0;
+    border-radius: 12px;
+    border: 2px solid #C0C0C0;
+    cursor: pointer;
+    width: 60%;
+    font-family:'nunito black' ,sans-serif;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+#error {
+    color: red;
+    font-size: 20px;
+    margin-left: 10%;
+}
+#divisor {
+    position:relative;
+    width: 70%;
+    height: 5px;
+    top:-40px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #c0c0c0;
+  }
+body {
+    font-family:'nunito black' ,sans-serif;
+    
+}

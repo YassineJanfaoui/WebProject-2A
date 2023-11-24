@@ -1,0 +1,71 @@
+#formTitle, #emailTitle, #nameTitle,#feedbackTitle{
+    font-family:'nunito black' ,sans-serif;
+    font-weight: bold;
+    color: #2b2d42;
+    text-align: center;
+}
+#formTitle{
+    margin-top: 2.5%;
+	text-align: center;
+}
+#emailTitle, #nameTitle,#feedbackTitle{
+    font-size: 20px;
+    margin-left:10%;
+}
+#form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #FFFFFF;
+    text-align: center;
+    border-radius: 12px;
+    border: 2px solid #C0C0C0;
+}
+#email, #user_id, #description {
+
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 2px solid #C0C0C0;
+}
+#submit {
+    background-color: #00D9A5;
+    color: white;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    border-radius: 12px;
+    border: 2px solid #C0C0C0;
+    cursor: pointer;
+    width: 80%;
+    font-family:'nunito black' ,sans-serif;
+}
+#error {
+    color: red;
+    font-size: 20px;
+    margin-left: 10%;
+}
+.overlay#blur.active {
+    filter: blur(20px);
+
+    -webkit-filter: blur(20px);
+}
+
+#popup.active {
+    position:relative;
+    top:50%;
+   left:50%;
+   transform: translate(-50%,-50%);
+   width:600px;
+   padding:50px;
+   box-shadow: 0 5px 30px rgba(0,0,0,.3);
+   background:#FFFFFF;
+    visibility:visible;
+   opacity:1;
+   transition:0.5s;
+}
+body {
+    font-family:'nunito black' ,sans-serif;
+    
+}
