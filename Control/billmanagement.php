@@ -94,5 +94,17 @@ class BillManagement{
             die('ERROR: '.$e->getMessage());
         }
     }
+    public function payBill($bill_id){
+        $sql="UPDATE billing SET paid_status=1 WHERE bill_id=:bill_id";
+        $db=config::getConnexion();
+        $query=$db->prepare($sql);
+        $query->bindValue(":bill_id",$bill_id);
+        try{
+            $query->execute();
+        }
+        catch(Exception $e){
+            echo "Error".$e->getMessage();
+        }
+    }
 }
 ?>

@@ -8,6 +8,7 @@ class bill {
     public $total_stay_price;
     public $medication_cost;
     public $total_amount;
+    public $paid_status;
     
     public function __construct($bill_id, $patient_id, $bill_type, $consultation_price, $surgery_price,$total_stay_price,$medication_cost,$total_amount) {
         $this->bill_id = $bill_id;
@@ -18,6 +19,7 @@ class bill {
         $this->total_stay_price = $total_stay_price;
         $this->medication_cost = $medication_cost;
         $this->total_amount = $total_amount;
+        $this->paid_status=$paid_status;
     }
     public function show() {
         echo "<table border='1'>

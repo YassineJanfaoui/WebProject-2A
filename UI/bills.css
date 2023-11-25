@@ -1,0 +1,33 @@
+body {
+    background-color: #C0C0C0;
+    font-family: 'Tex Gyre Termes', serif;
+    color: #4F988D;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #2B2D42;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+nav {
+    background-color: #2B2D42;
+    padding: 10px;
+    text-align: center;
+}
+nav a {
+    color:#4F988D;
+    text-decoration: none;
+    margin: 0 15px;
+    font-family: 'Tex Gyre Termes', serif;
+}
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
