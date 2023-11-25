@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
+    <script lang="javascript" src="control.js"></script>
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+    <header>
+        <div class="child"><h1>Billing</h1></div>
+        <div class="child"><img src="clinic freud.png" height="60px" width="135px" height="90px"></div>
+    </header>
+    <nav>
+        <a href="#">Appointment</a>
+        <a href="#">Feedback</a>
+        <a href="#">Billing</a>
+    </nav>
+    <div class="container">
+        <h2 align="center">Payment Details</h2>
+        <form action="bills.html" onsubmit="return validation()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <br>
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+            <br><br>
+            <div class="input-group">
+                <label for="expirationDateMM">Expiration Date</label>
+                <input type="text" id="expirationDateMM" name="expirationDateMM" placeholder="MM">
+                <input type="text" id="expirationDateYYYY" name="expirationDateYYYY" placeholder="YYYY">
+                <label for="cvv">CVV:</label>
+                <input type="password" id="cvv" name="cvv" placeholder="XXX">
+            </div>
+            <br>
+            <label for="streetAddress">Street Address:</label>
+            <input type="text" id="streetAddress" name="streetAddress" required>
+            <br>
+            <input type="submit" value="Confirm Details">
+        </form>
+    </div>
+</body>
+</html>

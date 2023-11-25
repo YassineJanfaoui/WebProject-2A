@@ -1,0 +1,40 @@
+/* styles.css */
+
+/* Header Styles */
+#header {
+    background-color: #4F988D;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  #header img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Navbar Styles */
+  #navbar-container {
+    height: 100vh; /* Make the container take up the full height of the viewport */
+    display: flex;
+    flex-direction: column;
+  }
+  #navbar {
+    background-color: #2B2D42;
+    color: #2B2D42;
+    padding: 10px;
+  }
+  
+  #navbar a {
+    display: block;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 8px;
+    margin-bottom: 5px;
+  }
+  
+  #navbar a:hover {
+    background-color: #4F988D;
+    color: #FFFFFF;
+  }
+  
