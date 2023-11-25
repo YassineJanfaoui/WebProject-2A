@@ -50,3 +50,37 @@ button {
 button:hover {
     background-color: #4F988D; /* Change to your desired hover color */
 }
+/* SEARCH BAR */
+
+form {
+    margin-top: 10px;
+}
+
+
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2B2D42; 
+}
+
+
+input[type="text"],
+input[type="submit"] {
+    width: 80px;
+    /*padding: 8px; */
+    margin-bottom: 4px; 
+}
+
+
+input[type="submit"] {
+    background-color: #4F988D; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+
+
+input[type="submit"]:hover {
+    background-color: #2B2D42;
+}

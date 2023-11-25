@@ -9,19 +9,14 @@
 <body align="center">
 
     <header>
-        Bills
+        Bills of patient with ID <?php echo $_GET['pid']?>
     </header>
 
     <?php
     include "../Control/billmanagement.php";
     $b = new BillManagement();
-    $tab = $b->listBills();
+    $tab = $b->showBillByPatientId($_GET['pid']);
     ?>
-    <form align="center" action="listBillById.php" method="GET">
-        <b><label for="search_nav">Search by patient ID</label></b>
-        <input type="text" id="pid" name="pid">
-        <input type="submit" value="Search">
-    </form>
     <table>
         <thead>
             <tr>
@@ -54,6 +49,5 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <a href="addBill.php">Add a bill</a>
 </body>
 </html>

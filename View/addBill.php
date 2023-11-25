@@ -48,7 +48,6 @@ if (isset($_POST["id_patient"])) {
         <form align="center" action="" method="POST">
             <label for="patient_id">Patient ID :</label>
             <input type="text" id="patient_id" name="id_patient">
-            
             <button type="submit">Submit</button>
         </form>
     </main>

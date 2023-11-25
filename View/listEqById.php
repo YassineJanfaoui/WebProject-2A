@@ -8,20 +8,20 @@
 </head>
 <body>
 
-    <header>
-        Equipment
-    </header>
     
     <?php
     include "../Control/equipmentmanagement.php"; 
     $equipment = new EquipmentManagement(); 
-    $equipmentList = $equipment->listEquipment(); 
+    $equipmentList = $equipment->showEquipmentByEqId($_GET['eid']);
+    if($equipmentList==null){
+        echo "There is no equipments with ID".$_GET['eid'];
+    }
+
+
     ?>
-    <form align="center" action="listEqById.php" method="GET">
-        <b><label for="search_nav">Search by Equipment ID</label></b>
-        <input type="text" id="eid" name="eid">
-        <input type="submit" value="Search">
-    </form>
+    <header>
+        Equipment with ID <?php echo $_GET['eid'] ?>
+    </header>
     <table>
         <thead>
             <tr>
@@ -48,6 +48,5 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div align="center"><a href="addEquipment.php">Add an equipment</a></div>
 </body>
 </html>

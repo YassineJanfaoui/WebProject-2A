@@ -12,7 +12,22 @@ class EquipmentManagement {
             die('Error: ' . $e->getMessage());
         }
     }
-
+    public function showEquipmentByEqId($eq_id) {
+        $sql = "SELECT * FROM equipment WHERE eq_id = :eq_id";
+        $db = config::getConnexion();
+        $query = $db->prepare($sql);
+        $query->bindValue(':eq_id', $eq_id);
+    
+        try {
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    
+    
+    }
     public function addEquipment($eq_name, $eq_quantity, $eq_purchase_price, $eq_purchase_history) {
         $db = config::getConnexion();
         $sql = "INSERT INTO equipment (eq_name, eq_quantity, eq_purchase_price, eq_purchase_history) 

@@ -12,6 +12,22 @@ class BillManagement{
             die('Error: '.$e->getMessage());
         }
     }
+    public function showBillByPatientId($patient_id) {
+        $sql = "SELECT * FROM billing WHERE patient_id = :patient_id";
+        $db = config::getConnexion();
+        $query = $db->prepare($sql);
+        $query->bindValue(':patient_id', $patient_id);
+    
+        try {
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    
+    
+    }
     public function addBill($patient_id){
         $sql="INSERT INTO billing (patient_id, bill_type, consultation_price, surgery_price, total_stay_price, medication_cost, total_amount)
         SELECT
