@@ -1,7 +1,7 @@
 <?php
 include '../Control/billmanagement.php';
 include '../Model/billinfo.php';
-
+//changes
 $error = "";
 
 $b = new BillManagement();
@@ -54,3 +54,4 @@ if (isset($_POST["id_patient"])) {
     </main>
 </body>
 </html>
+
