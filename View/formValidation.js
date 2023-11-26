@@ -34,7 +34,7 @@ function isValidAlphabetic(input) {
 }
 
 function isValidNumericAndPositive(input) {
-    return input>0;
+    return input>0 && !isNaN(input);
 }
 function isValidDate(input) {
     var date = new Date(input);

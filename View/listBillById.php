@@ -51,5 +51,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div align="center"><a href="listbills.php">Return to bill list</a></div>
 </body>
 </html>

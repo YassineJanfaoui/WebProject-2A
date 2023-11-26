@@ -48,5 +48,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div align="center"><a href="listEquipments.php">Return to equipment list</a></div>
 </body>
 </html>

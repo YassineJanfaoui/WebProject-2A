@@ -40,6 +40,7 @@ if (
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update a bill</title>
     <link rel="stylesheet" href="addBill.css">
+    <script lang="javascript" src="updatebill.js"></script>
 </head>
 <body>
 
@@ -55,7 +56,7 @@ if (
             <?php echo $error; ?>
         </div>
 
-        <form  align="center" action="" method="POST">
+        <form  align="center" action="" method="POST" onsubmit="return letThrough()">
             <label for="consultation_price">Consultation Price :</label>
             <input type="text" id="consultation_price" name="consultation_price" value="<?php echo $_GET["consultation_price"]?>"><br>
             <label for="surgery_price">Surgery Price :</label>

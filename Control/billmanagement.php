@@ -56,11 +56,11 @@ class BillManagement{
             echo "ERROR".$e->getMessage();
         }
     }
-    public function removeBill($patient_id){
-        $sql = "DELETE FROM billing WHERE patient_id = :patient_id";
+    public function removeBill($bill_id){
+        $sql = "DELETE FROM billing WHERE bill_id = :bill_id";
         $db = config::getConnexion();
         $query=$db->prepare($sql);
-        $query->bindValue(':patient_id',$patient_id);
+        $query->bindValue(':bill_id',$bill_id);
 
         try{
             $query->execute();
