@@ -4,13 +4,20 @@ class Feedback
     private ?int $feedback_id = null;
     private ?int $user_id = null;
     private ?string $description = null;
+    private ?string $date_added = null;
 
 
-    public function __construct($u = null, $id, $desc)
+    public function __construct($u = null, $id, $desc, $date = null)
     {
         $this->user_id = $id;
         $this->description = $desc;
         $this->feedback_id = $u;
+        $this->date_added = $date;
+    }
+
+    public function getDateAdded()
+    {
+        return $this->date_added;
     }
     public function getFeedbackID()
     {

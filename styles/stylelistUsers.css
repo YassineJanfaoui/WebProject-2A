@@ -5,13 +5,21 @@ h1 {
     padding: 10px;
     text-align: center;
 }
-a {
+.action {
     text-decoration: none; /* Removes the underline */
-    color: inherit; /* Preserves the default text color */
+    color: brown; /* Preserves the default text color */
 }
-a:hover {
+.action:hover {
     text-decoration: underline; /* Adds the underline on hover */
-    color: darkred; /* Changes the link color on hover */
+    color: red; /* Changes the link color on hover */
+}
+#searchBar{
+    position: relative;
+    top:5px;
+    margin-left: 18%;
+}
+#search{
+    display: flex;
 }
 body {
     font-family: 'Nunito Black', sans-serif;

@@ -26,9 +26,8 @@ function checkConfirm() {
 function checkEmail() {
     let email = document.getElementById("email").value;
     let emailError = document.getElementById("email-message");
-    if (!/^[a-zA-Z0-9._-]+@gmail.com/.test(email)) {
-        emailError.innerHTML = "Please enter a valid Email";
-        emailError.style.color = "red";
+    if (!/^[a-zA-Z0-9._-]+@gmail.com/.test(email) && !/^[a-zA-Z0-9._-]+@esprit.tn/.test(email) && !/^[a-zA-Z0-9._-]+@outlook.com/.test(email) && !/^[a-zA-Z0-9._-]+@yahoo.com/.test(email)) {
+        emailError.textContent = "Please enter a valid Email";
         return true;
     }
     emailError.innerHTML = "";

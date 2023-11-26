@@ -64,10 +64,10 @@ form{
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
 }
-#error {
+.error {
+    position: relative;
     color: red;
-    font-size: 20px;
-    margin-left: 10%;
+    top:50px;
 }
 #divisor {
     position:relative;

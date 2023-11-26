@@ -1,7 +1,10 @@
 <?php
 require "../Controller/UserC.php";
 $c = new UserController();
-$tab = $c->listUsers();
+$test = null;
+if (isset($_GET["sort"]))
+$test = $_GET["sort"];
+$tab = $c->listUsers($test);
 session_start();
 ?>
 <html>
@@ -15,7 +18,7 @@ session_start();
 <body>
 <div class="container">
         <header class="nav-down">
-            <p>Admin Dashboard</p>
+            <p>Admin Dashboard - Welcome <?php echo $_SESSION["username"]?></p>
 
         </header>
         <!-- Side navigation -->
@@ -26,6 +29,7 @@ session_start();
             <a href="#">Add Nurse</a>
             <a href="#">Confirm Surgery</a>
             <a href="#">Assign Schedule</a>
+            <a style="color:green;" href="index.php">Go to HomePage</a>
         </div>
     </div>
     <div class="main">
@@ -38,7 +42,16 @@ session_start();
             <th>Last Name</th>
             <th>Email</th>
             <th>Contact Number</th>
-            <th>Type of user</th>
+            <th><a style=" text-decoration: none; color:#fff;" href=<?php
+                        if ($test == "type") {
+                            echo "\"ListUsers.php?sort=\"";
+                        } else {
+                            echo "\"ListUsers.php?sort=type\"";
+                        }
+                        ?>
+            >Role</a></th>
+            <th>status</th>
+            <th>Ban User</th>
         </tr>
         <?php
         foreach ($tab as $user) {
@@ -51,6 +64,14 @@ session_start();
                 <td><?php echo $user['email_address']; ?></td>
                 <td><?php echo $user['contact_number']; ?></td>
                 <td><?php echo $user['type']; ?></td>
+                <td><?php echo $user['enabled']; ?></td>
+                <?php
+                if ($user['enabled'] == 1) {
+                    echo "<td><a class='action' href=\"BanUser.php?user_id=" . $user['user_id'] . "\">Ban</a></td>";
+                } else {
+                    echo "<td><a class='action' href=\"UnbanUser.php?user_id=" . $user['user_id'] . "\">Unban</a></td>";
+                }
+                ?>
 
             </tr>
         <?php

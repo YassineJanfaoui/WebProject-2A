@@ -9,8 +9,9 @@ class User
     private ?string $email_address = null;
     private ?string $contact_number = null;
     private ?string $type = null;
+    private ?int $enabled = null;
 
-    public function __construct($id,$u,$p, $fn, $ln, $e, $c,$t)
+    public function __construct($id,$u,$p, $fn, $ln, $e, $c,$t,$en)
     {
         $this->user_id = $id;
         $this->username = $u;
@@ -20,6 +21,11 @@ class User
         $this->email_address = $e;
         $this->contact_number = $c; 
         $this->type = $t;
+        $this->enabled = $en;
+    }
+    public function getEnabled()
+    {
+        return $this->enabled;
     }
     public function getUserID()
     {

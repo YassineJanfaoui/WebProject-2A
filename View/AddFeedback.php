@@ -11,7 +11,8 @@ if (isset($_SESSION["user_id"]) && isset($_POST["description"])) //input control
     if (!empty($_SESSION["user_id"]) && !empty($_POST["description"])) {
       if ($feedbackC->checkUserID($_SESSION["user_id"]))
       {
-        $feedback = new Feedback(null, $_SESSION["user_id"], $_POST["description"]);    //adding values to new feedback object
+        $date = date('Y-m-d');
+        $feedback = new Feedback(null, $_SESSION["user_id"], $_POST["description"],$date);    //adding values to new feedback object
         $feedbackC->addfeedback($feedback);
         $success = 1;
       }
@@ -71,7 +72,7 @@ if (isset($_SESSION["user_id"]) && isset($_POST["description"])) //input control
 
   <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
     <div class="container">
-      <a class="navbar-brand" href="#"><span class="text-primary">One</span>-Health</a>
+      <a class="navbar-brand" href="index.php"><span class="text-primary">One</span>-Health</a>
 
       <div class="collapse navbar-collapse" id="navbarSupport">
         <ul class="navbar-nav ml-auto">
@@ -90,7 +91,7 @@ if (isset($_SESSION["user_id"]) && isset($_POST["description"])) //input control
           <?php
 if(!isset($_SESSION["user_id"]) || empty($_SESSION["user_id"]))
 {
-  echo '<li class="nav-item"><a class="btn btn-primary ml-lg-3" href="RegisterUser.php">Login / Register</a></li>';
+  echo '<li class="nav-item"><a class="btn btn-primary ml-lg-3" href="login.php">Login / Register</a></li>';
 }
 else
 {
