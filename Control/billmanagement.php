@@ -28,6 +28,40 @@ class BillManagement{
     
     
     }
+    public function getIncome() {
+        $sql = "SELECT * FROM billing WHERE paid_status=1";
+        $db = config::getConnexion();
+        $query = $db->prepare($sql);
+        try {
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            $money = 0; 
+            foreach ($result as $content) {
+                $money += $content['total_amount'];
+            }
+            return $money;
+        } catch (PDOException $e) {
+            echo "Error" . $e->getMessage();
+        }
+    }
+    
+    public function getExpenses() {
+        $sql = "SELECT * FROM equipment";
+        $db = config::getConnexion();
+        $query = $db->prepare($sql);
+        try {
+            $query->execute();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            $money = 0; 
+            foreach ($result as $content) {
+                $money += $content['eq_purchase_price'];
+            }
+            return $money;
+        } catch (PDOException $e) {
+            echo "Error" . $e->getMessage();
+        }
+    }
+    
     public function addBill($patient_id){
         $sql="INSERT INTO billing (patient_id, bill_type, consultation_price, surgery_price, total_stay_price, medication_cost, total_amount)
         SELECT
