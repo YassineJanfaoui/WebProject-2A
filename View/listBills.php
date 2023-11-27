@@ -22,6 +22,15 @@
         <input type="text" id="pid" name="pid">
         <input type="submit" value="Search">
     </form>
+    <form align="center">
+        <select id="filter" onchange=filterOnDemand()>
+            <option selected="Sort by" disabled>Sort by</option>
+            <option value="taasc">Total amount (low to high)</option>
+            <option value="tadesc">Total amount (high to low )</option>
+            <option value="ps1">Paid bills</option>
+            <option value="ps0">Unpaid bills</option>
+        </select>
+    </form>
     <table>
         <thead>
             <tr>
@@ -57,5 +66,8 @@
         </tbody>
     </table>
     <a href="addBill.php">Add a bill</a>
+
+    <!-- Include the script at the end of the body or use DOMContentLoaded -->
+    <script lang="javascript" src="filter.js"></script>
 </body>
 </html>
