@@ -18,7 +18,7 @@
         <?php 
             include "../Control/billmanagement.php";
             $b = new BillManagement();
-            $tab = $b->showBillByPatientId(2);
+            $tab = $b->showBillByPatientId(1);
         ?>
         <table>
         <thead>
