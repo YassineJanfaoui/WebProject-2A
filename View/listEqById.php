@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Equipments List</title>
-    <link rel="stylesheet" href="listEquipment.css"> 
+    <link rel="stylesheet" href="../Assets/CSS Styles/listEquipment.css"> 
 </head>
 <body>
 

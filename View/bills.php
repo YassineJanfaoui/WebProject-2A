@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Payment Page</title>
-    <link rel="stylesheet" href="bills.css">
+    <link rel="stylesheet" href="../Assets/CSS Styles/bills.css">
 </head>
 <body>
     <header>

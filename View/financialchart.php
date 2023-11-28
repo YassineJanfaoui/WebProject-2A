@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<link rel="stylesheet" href="chartclinic.css">
+<link rel="stylesheet" href="../Assets/CSS Styles/chartclinic.css">
 <body>
 
 <canvas id="myChart" style="width:100%;max-width:600px"></canvas>

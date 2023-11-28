@@ -39,8 +39,8 @@ if (
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update a bill</title>
-    <link rel="stylesheet" href="addBill.css">
-    <script lang="javascript" src="updatebill.js"></script>
+    <link rel="stylesheet" href="../Assets/CSS Styles/addBill.css">
+    <script lang="javascript" src="../Assets/JavaScript Scripts/updatebill.js"></script>
 </head>
 <body>
 

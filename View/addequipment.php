@@ -29,8 +29,8 @@ if (isset($_POST["eq_name"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Equipment</title>
-    <link rel="stylesheet" href="addEquipment.css">
-    <script src="formValidation.js"></script>
+    <link rel="stylesheet" href="../Assets/CSS Styles/addEquipment.css">
+    <script src="../Assets/JavaScript Scripts/formValidation.js"></script>
 </head>
 <body>
     <header>
