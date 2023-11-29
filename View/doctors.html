@@ -10,18 +10,15 @@
 
   <title>Freud Health - Medical Center HTML5 Template</title>
 
-  <link rel="stylesheet" href="../Assets/Css Styles/maicons.css">
+  <link rel="stylesheet" href="../Assets/CSS Styles/maicons.css">
 
-  <link rel="stylesheet" href="../Assets/Css Styles/bootstrap.css">
+  <link rel="stylesheet" href="../Assets/CSS Styles/bootstrap.css">
 
-  <link rel="stylesheet" href="../Assets/vendor/owl-carousel/Css Styles/owl.carousel.css">
+  <link rel="stylesheet" href="../Assets/vendor/owl-carousel/CSS Styles/owl.carousel.css">
 
   <link rel="stylesheet" href="../Assets/vendor/animate/animate.css">
 
-  <link rel="stylesheet" href="../Assets/Css Styles/theme.css">
-
-  <link rel="stylesheet" href="../Assets/Css Styles/payment.css">
-  <link rel="stylesheet" href="../Assets/CSS Styles/bills.css">
+  <link rel="stylesheet" href="../Assets/CSS Styles/theme.css">
 </head>
 <body>
 
@@ -67,8 +64,8 @@
               <a class="nav-link" href="doctors.html">Doctors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="payment.html">Payment</a>
-              </li>
+              <a class="nav-link" href="payment.html">Payment</a>
+            </li>
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-3" href="#">Login / Register</a>
             </li>
@@ -84,54 +81,115 @@
         <nav aria-label="Breadcrumb">
           <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Payment</li>
+            <li class="breadcrumb-item active" aria-current="page">Doctors</li>
           </ol>
         </nav>
-        <h1 class="font-weight-normal">Set up payment method</h1>
+        <h1 class="font-weight-normal">Our Doctors</h1>
       </div> <!-- .container -->
     </div> <!-- .banner-section -->
   </div> <!-- .page-banner -->
-    <div class="container-bills" align="center">
-        <?php 
-            include "../Control/billmanagement.php";
-            $b = new BillManagement();
-            $tab = $b->showBillByPatientId(1);
-        ?>
-        <table>
-        <thead>
-            <tr>
-                <th>Bill ID</th>
-                <th>Patient ID</th>
-                <th>Bill Type</th>
-                <th>Consultation Price</th>
-                <th>Surgery Price</th>
-                <th>Total Stay Price</th>
-                <th>Medication Price</th>
-                <th>Total Amount</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($tab as $bill):
-                if($bill['paid_status']==0){ ?>
-                <tr>
-                    <td><?= $bill['bill_id'] ?></td>
-                    <td><?= $bill['patient_id'] ?></td>
-                    <td><?= $bill['bill_type'] ?></td>
-                    <td><?= $bill['consultation_price'] ?></td>
-                    <td><?= $bill['surgery_price'] ?></td>
-                    <td><?= $bill['total_stay_price'] ?></td>
-                    <td><?= $bill['medication_cost'] ?></td>
-                    <td><?= $bill['total_amount'] ?></td>
-                    <td class="action-buttons">
-                        <button type="button" onclick="window.location.href='payBill.php?bill_id=<?= $bill['bill_id']; ?>'">Pay</button>
-                    </td>
-                </tr>
-            <?php } endforeach; ?>
-        </tbody>
-        </table>
-    </div>
-    <footer class="page-footer">
+
+  <div class="page-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+          <div class="row">
+            
+            
+            <div class="col-md-6 col-lg-4 py-3 wow zoomIn">
+              <div class="card-doctor">
+                <div class="header">
+                  <img src="../Assets/Images/doctors/doctor_1.jpg" alt="">
+                  <div class="meta">
+                    <a href="#"><span class="mai-call"></span></a>
+                    <a href="#"><span class="mai-logo-whatsapp"></span></a>
+                  </div>
+                </div>
+                <div class="body">
+                  <p class="text-xl mb-0">Dr. Soumaya Shiri</p>
+                  <span class="text-sm text-grey">Cardiology</span>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 py-3 wow zoomIn">
+              <div class="card-doctor">
+                <div class="header">
+                  <img src="../Assets/Images/doctors/doctor_2.jpg" alt="">
+                  <div class="meta">
+                    <a href="#"><span class="mai-call"></span></a>
+                    <a href="#"><span class="mai-logo-whatsapp"></span></a>
+                  </div>
+                </div>
+                <div class="body">
+                  <p class="text-xl mb-0">Dr. Rayen Ajil</p>
+                  <span class="text-sm text-grey">Dental</span>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-6 col-lg-4 py-3 wow zoomIn">
+              <div class="card-doctor">
+                <div class="header">
+                  <img src="../Assets/Images/doctors/doctor_3.jpg" alt="">
+                  <div class="meta">
+                    <a href="#"><span class="mai-call"></span></a>
+                    <a href="#"><span class="mai-logo-whatsapp"></span></a>
+                  </div>
+                </div>
+                <div class="body">
+                  <p class="text-xl mb-0">Dr. Mariem Abidi</p>
+                  <span class="text-sm text-grey">General Health</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+  <div class="page-section">
+    <div class="container">
+      <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
+
+      <form class="main-form">
+        <div class="row mt-5 ">
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+            <input type="text" class="form-control" placeholder="Full name">
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+            <input type="text" class="form-control" placeholder="Email address..">
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+            <input type="date" class="form-control">
+          </div>
+          <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
+            <select name="departement" id="departement" class="custom-select">
+              <option value="general">General Health</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="dental">Dental</option>
+              <option value="neurology">Neurology</option>
+              <option value="orthopaedics">Orthopaedics</option>
+            </select>
+          </div>
+          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+            <input type="text" class="form-control" placeholder="Number..">
+          </div>
+          <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+            <textarea name="message" id="message" class="form-control" rows="6" placeholder="Enter message.."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Submit Request</button>
+      </form>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+  <footer class="page-footer">
     <div class="container">
       <div class="row px-md-3">
         <div class="col-sm-6 col-lg-3 py-3">
@@ -192,5 +250,6 @@
 <script src="../Assets/vendor/wow/wow.min.js"></script>
 
 <script src="../Assets/JavaScript Scripts/theme.js"></script>
+  
 </body>
 </html>

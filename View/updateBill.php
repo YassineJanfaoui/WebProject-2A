@@ -10,12 +10,12 @@ if (
     isset($_POST["total_stay_price"]) &&
     isset($_POST["medication_cost"])
 ) {
-    if (
+    /*if (
         !empty($_POST["consultation_price"]) &&
         !empty($_POST["surgery_price"]) &&
         !empty($_POST["total_stay_price"]) &&
         !empty($_POST["medication_cost"])
-    ) {
+    ) {*/
         
 
         $b->modifyBill(
@@ -28,9 +28,9 @@ if (
 
         header('Location: listBills.php');
         exit(); 
-    } else {
+    /*} else {
         $error = "Missing information";
-    }
+    }*/
 }
 ?>
 <!DOCTYPE html>

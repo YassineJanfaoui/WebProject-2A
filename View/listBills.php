@@ -68,6 +68,6 @@
     <a href="addBill.php">Add a bill</a>
 
     <!-- Include the script at the end of the body or use DOMContentLoaded -->
-    <script lang="javascript" src="filter.js"></script>
+    <script lang="javascript" src="../Assets/JavaScript Scripts/filter.js"></script>
 </body>
 </html>

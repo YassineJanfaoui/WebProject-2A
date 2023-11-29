@@ -1,41 +1,13 @@
-body {
-    background-color: #C0C0C0;
-    font-family: 'Tex Gyre Termes', serif;
-    color: #4F988D;
-    margin: 0;
-    padding: 0;
-}
-header {
-    display: flex;
-    justify-content: center;
-    background-color: #2B2D42;
-    color:#C0C0C0;
-    text-align: center;
-    padding: 10px;
-}
-.child {
-    margin: 0 10px; /* Adjust the margin value to control the space between elements. */
-    padding: 10px;
-}
-nav {
-    background-color: #2B2D42;
-    padding: 10px;
-    text-align: center;
-}
-nav a {
-    color:#4F988D;
-    text-decoration: none;
-    margin: 0 15px;
-    font-family: 'Tex Gyre Termes', serif;
-}
-.container {
-    max-width: 600px;
+
+.container-form{
+    max-width: 1000px;
     margin: 0 auto;
     margin-top: 50px;
     padding: 20px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 50px;
 }
 form {
     text-align: center;
@@ -51,7 +23,7 @@ label {
 }
 input[type="text"],
 input[type="password"] {
-    width: 90%;
+    width: 20%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;

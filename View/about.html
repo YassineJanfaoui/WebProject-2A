@@ -8,20 +8,17 @@
 
   <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
-  <title>Freud Health - Medical Center HTML5 Template</title>
+  <title>Freud Clinic</title>
 
-  <link rel="stylesheet" href="../Assets/Css Styles/maicons.css">
+  <link rel="stylesheet" href="../Assets/CSS Styles/maicons.css">
 
-  <link rel="stylesheet" href="../Assets/Css Styles/bootstrap.css">
+  <link rel="stylesheet" href="../Assets/CSS Styles/bootstrap.css">
 
-  <link rel="stylesheet" href="../Assets/vendor/owl-carousel/Css Styles/owl.carousel.css">
+  <link rel="stylesheet" href="../Assets/vendor/owl-carousel/CSS Styles/owl.carousel.css">
 
   <link rel="stylesheet" href="../Assets/vendor/animate/animate.css">
 
-  <link rel="stylesheet" href="../Assets/Css Styles/theme.css">
-
-  <link rel="stylesheet" href="../Assets/Css Styles/payment.css">
-  <link rel="stylesheet" href="../Assets/CSS Styles/bills.css">
+  <link rel="stylesheet" href="../Assets/CSS Styles/theme.css">
 </head>
 <body>
 
@@ -67,8 +64,8 @@
               <a class="nav-link" href="doctors.html">Doctors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="payment.html">Payment</a>
-              </li>
+              <a class="nav-link" href="payment.html">Payment</a>
+            </li>
             <li class="nav-item">
               <a class="btn btn-primary ml-lg-3" href="#">Login / Register</a>
             </li>
@@ -83,55 +80,66 @@
       <div class="container text-center wow fadeInUp">
         <nav aria-label="Breadcrumb">
           <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Payment</li>
+            <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About</li>
           </ol>
         </nav>
-        <h1 class="font-weight-normal">Set up payment method</h1>
+        <h1 class="font-weight-normal">About Us</h1>
       </div> <!-- .container -->
     </div> <!-- .banner-section -->
   </div> <!-- .page-banner -->
-    <div class="container-bills" align="center">
-        <?php 
-            include "../Control/billmanagement.php";
-            $b = new BillManagement();
-            $tab = $b->showBillByPatientId(1);
-        ?>
-        <table>
-        <thead>
-            <tr>
-                <th>Bill ID</th>
-                <th>Patient ID</th>
-                <th>Bill Type</th>
-                <th>Consultation Price</th>
-                <th>Surgery Price</th>
-                <th>Total Stay Price</th>
-                <th>Medication Price</th>
-                <th>Total Amount</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($tab as $bill):
-                if($bill['paid_status']==0){ ?>
-                <tr>
-                    <td><?= $bill['bill_id'] ?></td>
-                    <td><?= $bill['patient_id'] ?></td>
-                    <td><?= $bill['bill_type'] ?></td>
-                    <td><?= $bill['consultation_price'] ?></td>
-                    <td><?= $bill['surgery_price'] ?></td>
-                    <td><?= $bill['total_stay_price'] ?></td>
-                    <td><?= $bill['medication_cost'] ?></td>
-                    <td><?= $bill['total_amount'] ?></td>
-                    <td class="action-buttons">
-                        <button type="button" onclick="window.location.href='payBill.php?bill_id=<?= $bill['bill_id']; ?>'">Pay</button>
-                    </td>
-                </tr>
-            <?php } endforeach; ?>
-        </tbody>
-        </table>
+
+  <div class="page-section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 py-3 wow zoomIn">
+          <div class="card-service">
+            <div class="circle-shape bg-secondary text-white">
+              <span class="mai-chatbubbles-outline"></span>
+            </div>
+            <p><span>Chat</span> with doctors</p>
+          </div>
+        </div>
+        <div class="col-md-4 py-3 wow zoomIn">
+          <div class="card-service">
+            <div class="circle-shape bg-primary text-white">
+              <span class="mai-shield-checkmark"></span>
+            </div>
+            <p><span>Freud</span>-Clinic Protection</p>
+          </div>
+        </div>
+        <div class="col-md-4 py-3 wow zoomIn">
+          <div class="card-service">
+            <div class="circle-shape bg-accent text-white">
+              <span class="mai-basket"></span>
+            </div>
+            <p><span>Freud</span>-Clinic Pharmacy</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <footer class="page-footer">
+  </div>
+
+  <div class="page-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 wow fadeInUp">
+          <h1 class="text-center mb-3">Welcome to Your Clinic</h1>
+          <div class="text-lg">
+            <p>Our team of licensed and experienced surgeons, general doctors,
+               and specialized-fields professionals are here to guide you through your
+              journey to self-discovery and healing. Our
+              dedicated staff is committed to providing a safe and nurturing environment
+               for your mental health needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <footer class="page-footer">
     <div class="container">
       <div class="row px-md-3">
         <div class="col-sm-6 col-lg-3 py-3">
@@ -179,7 +187,7 @@
 
       <hr>
 
-      <p id="copyright">Copyright &copy; 2023 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All rights reserved</p>
+      <p id="copyright">Copyright &copy; 2023 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All right reserved</p>
     </div>
   </footer>
 
@@ -192,5 +200,6 @@
 <script src="../Assets/vendor/wow/wow.min.js"></script>
 
 <script src="../Assets/JavaScript Scripts/theme.js"></script>
+  
 </body>
 </html>
