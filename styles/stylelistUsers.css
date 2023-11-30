@@ -21,6 +21,24 @@ h1 {
 #search{
     display: flex;
 }
+#searchRating
+{
+    display:flex;
+    align-items: flex-start;
+    padding:0px;
+}
+#search_rating
+{
+    padding:0;
+}
+#ratingButton
+{
+    position:relative;
+    top:7px;
+    right:-4px;
+    padding-right:10px;
+    box-sizing: border-box;
+}
 body {
     font-family: 'Nunito Black', sans-serif;
     background-color: #c0c0c0;
