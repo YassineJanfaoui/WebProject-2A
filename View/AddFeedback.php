@@ -1,18 +1,23 @@
 <?php
 include "../Controller/FeedbackC.php";
 include "../Model/FeedbackModel.php";
+include "../Controller/UserC.php";
 $error = "";
 $success = 0;
 $feedback = null;
+$num = 0;
 $feedbackC = new FeedbackController();
+$userC = new UserController();
+$positive = $feedbackC->getPositiveFeedbacks();
 session_start();
-if (isset($_SESSION["user_id"]) && isset($_POST["description"])) //input control
+
+if (isset($_SESSION["user_id"]) && isset($_POST["description"]) && isset($_POST["stars"])) //input control
 {
-    if (!empty($_SESSION["user_id"]) && !empty($_POST["description"])) {
-      if ($feedbackC->checkUserID($_SESSION["user_id"]))
+    if (!empty($_SESSION["user_id"]) && !empty($_POST["description"]) ) {
+      if ($userC->checkUserID($_SESSION["user_id"])!=null)
       {
         $date = date('Y-m-d');
-        $feedback = new Feedback(null, $_SESSION["user_id"], $_POST["description"],$date);    //adding values to new feedback object
+        $feedback = new Feedback(null, $_SESSION["user_id"], $_POST["description"],$date,$_POST["stars"]);    //adding values to new feedback object
         $feedbackC->addfeedback($feedback);
         $success = 1;
       }
@@ -25,7 +30,9 @@ if (isset($_SESSION["user_id"]) && isset($_POST["description"])) //input control
         $error = "Missing information";
         $success = 0;
     }
-} ?>
+} 
+
+?>
 
 
 
@@ -106,17 +113,83 @@ else
     </div> <!-- .container -->
   </nav>
 </header>
-    <h1 id="formTitle">Feedback</h1>
+    <h1 id="formTitle">Feedback</h1><br>
     <form action="" method="POST">
         <label for="name" id="nameTitle">User_id:</label>
         <?php
         if(!isset($_SESSION["user_id"]) || empty($_SESSION["user_id"]))
         {
           echo '<span id="user_id">You must be logged in.</span></br>';
+          echo '<label  id="nameTitle" style="position:relative;top:15px;">Reviews from other users:</label>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-10">
+      
+                <div class="row">';
+                  foreach($positive as $feedback)
+                  {
+                    if ($num == 6)
+                    {
+                      break;
+                    }
+                    echo '
+                    <div class="col-md-6 col-lg-4 py-3 wow zoomIn">
+              <div class="card-doctor">
+                <div class="body">
+                  <p class="text-xl mb-0">'.$userC->checkUserID($feedback["user_id"])["username"].'</p>
+                  <p class="text-xl mb-0">'.$feedback["review"].' stars</p>
+                  <span class="text-sm text-grey">'.$feedback["description"].'</span>
+                </div>
+              </div>
+            </div>';
+                  }
+                  
+               echo '</div>
+      
+              </div>
+            </div>
+          </div> <!-- .container -->
+        ';
         }
         else
         {
-          echo '<span id="user_id">' . $_SESSION["user_id"] . '</span></br>';
+          echo '<span id="user_id">' . $_SESSION["user_id"] . '</span></br></br>';
+          echo '<label for="review" id="reviewTitle">Review:</label><br />';
+          echo '<div class="rating">
+          <label>
+          <input type="hidden" name="stars" value=0 />
+          </label>
+          <label>
+          <input type="radio" name="stars" value=1 />
+          <span class="icon">★</span>
+        </label>
+        <label>
+          <input type="radio" name="stars" value=2 />
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+        </label>
+        <label>
+          <input type="radio" name="stars" value=3 />
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+        </label>
+        <label>
+          <input type="radio" name="stars" value=4 />
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+        </label>
+        <label>
+          <input type="radio" name="stars" value=5 />
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+          <span class="icon">★</span>
+        </label></div>
+        <br />';
           echo '<label for="feedback" id="feedbackTitle">Feedback:</label><br />
           <textarea name="description" id="description" rows="5" cols="20" placeholder="Comments Here" required></textarea><br />
           <input type="submit" name="submit" id="submit" value="Submit Feedback" />';

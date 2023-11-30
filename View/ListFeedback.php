@@ -8,6 +8,9 @@ if (isset($_GET['search_user_id']) && !empty($_GET['search_user_id'])) {
 else if (isset($_GET['search_date']) && !empty($_GET['search_date'])) {
     $tab = $c->getFeedbacksbyDate($_GET['search_date']);
 }
+else if (isset($_GET['rating']) ) {
+    $tab = $c->getFeedbacksbyReview($_GET['rating']);
+}
 else
 {
     $tab = $c->getAllFeedbacks();
@@ -55,11 +58,27 @@ else
             <input type="submit" value="Search">
             </div>
         </form>
+        <form action=""  method="GET">
+            <label for="search_rating">Search By Rating:</label>
+            <div id="searchRating">
+            <select name="rating" id="search_rating">
+                <option value=0>0 stars</option>
+                <option value=1>1 star</option>
+                <option value=2>2 stars</option>
+                <option value=3>3 stars</option>
+                <option value=4>4 stars</option>
+                <option value=5>5 stars</option>
+            </select>
+            <input type="submit" id="ratingButton" value="Search">
+            </div>
+            
+        </form>
         </div>
         <table>
             <tr>
                 <th width=55px>Feedback_Id</th>
                 <th width=55px>User_Id</th>
+                <th width=55px>Rating</th>
                 <th>Description</th>
                 <th>Date</th>
                 <th>Delete</th>
@@ -70,6 +89,7 @@ else
                 <tr>
                     <td><?php echo $feedback['feedback_id']; ?></td>
                     <td><?php echo $feedback['user_id']; ?></td>
+                    <td><?php echo $feedback['review']." stars"; ?></td>
                     <td><?php echo $feedback['description']; ?></td>
                     <td><?php echo $feedback['date_added']; ?></td>
                     <td><a class="action" href="RemoveFeedback.php?feedback_id=<?php echo $feedback['feedback_id']; ?>">Remove</a></td>
