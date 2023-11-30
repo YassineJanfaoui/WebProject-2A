@@ -5,7 +5,7 @@ $user = null;
 $userC = new UserController();
 $to = null;
 $subject = "Thank You.";
-$message = "Thank You for putting your trust in us and joining freud clinic.";
+
 
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["first_name"]) && isset($_POST["family_name"]) && isset($_POST["email_address"]) && isset($_POST["contact_number"])) //input control
 {
@@ -21,6 +21,10 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["firs
     $_SESSION["type"] = $user->getRole();
 
     $to = $_POST["email_address"];
+    $message = "Thank You".$_POST["first_name"]." for putting your trust in us and joining freud clinic.\n
+    We will try our best to provide you with the best service possible.\n
+    We hope you have a great day.\n
+    -Freud Clinic Team";
     $headers = "From: no-reply@gmail.com" . "\r\n" .
       "Reply-To: " . $to . "\r\n";
     $mailSuccess = mail($to, $subject, $message, $headers);
