@@ -6,35 +6,6 @@
     <title>Bills List</title>
     <link rel="stylesheet" href="../Assets/CSS Styles/listBills.css">
 </head>
-<?php
-    function getpagenbprevious($cpn,$enrg){
-
-        if(($enrg->howManyRows()/4)%2==0){
-            if($cpn==(floor($enrg->howManyRows()/4)-1)){
-                return $cpn;
-            }
-            else{
-                return $cpn+1;
-            }
-        }
-        else{
-                if($cpn==(floor($enrg->howManyRows()/4))){
-                    return $cpn;
-                }
-                else{
-                    return $cpn+1;
-                }
-        }
-    }
-    function getpagenblast($enrg){
-        if(($enrg->howManyRows()/4)%2==0){
-            return floor($enrg->howManyRows()/4)-1;
-        }
-        else{
-            return floor($enrg->howManyRows()/4); 
-        }
-    }
-?>
 <body align="center">
 
     <header>
@@ -42,15 +13,9 @@
     </header>
 
     <?php
-    if(isset($_GET['pagenb'])){
-        $pagenb=$_GET['pagenb'];
-    }
-    else{
-        $pagenb=0; 
-    }
     include "../Control/billmanagement.php";
     $b = new BillManagement();
-    $tab = $b->listBills($pagenb);
+    $tab = $b->filterByUnpaid();
     ?>
     <form align="center" action="listBillById.php" method="GET">
         <b><label for="search_nav">Search by patient ID</label></b>
@@ -67,7 +32,7 @@
         <button type="button" name="filter" onclick="window.location.href='filterbypaid.php';">Paid bills</button>
         <button type="button" onclick="window.location.href='filterbyunpaid.php';">Unpaid bills</button>
     </form>
-    <table class="list">
+    <table>
         <thead>
             <tr>
                 <th>Bill Id</th>
@@ -101,27 +66,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <button type="button" onclick="window.location.href='addBill.php';">Add a bill</button>
-    <table class="table-pagination">
-        <thead>
-            <tr>
-            <th>
-                <button type="button" onclick="window.location.href='listBills.php'">First</button>
-            </th>
-            <th>
-                <button type="button" onclick="window.location.href='listBills.php?pagenb=<?php echo ($pagenb==0) ? 0 : ($pagenb-1); ?>'">Previous</button>
-            </th>
-            <th>
-                <?php echo $pagenb+1 ?>
-            </th>
-            <th>
-                <button type="button" onclick="window.location.href='listBills.php?pagenb=<?php echo getpagenbprevious($pagenb,$b); ?>'">Next</button>
-            </th>
-            <th>
-                <button type="button" onclick="window.location.href='listBills.php?pagenb=<?php echo getpagenblast($b); ?>'">Last</button>
-            </th>
-        </thead>
-    </table>
+    <a href="listBills.php">Return to bill list</a>
 
     <!-- Include the script at the end of the body or use DOMContentLoaded -->
     <script lang="javascript" src="../Assets/JavaScript Scripts/filter.js"></script>

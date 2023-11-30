@@ -73,5 +73,20 @@ class EquipmentManagement {
             die('ERROR: ' . $e->getMessage());
         }
     }
+    public function filterMinMax($min,$max){
+        $sql="SELECT * FROM equipment WHERE eq_purchase_price BETWEEN :min AND :max;";
+        $db=config::getConnexion();
+        $query=$db->prepare($sql);
+        $query->bindValue(':min',$min);
+        $query->bindValue(':max',$max);
+        try{
+            $query->execute();
+            $res=$query->fetchALL();
+            return $res;
+        }
+        catch(Exception $e){
+            echo "Error".$e->getMessage();
+        }
+    }
 }
 ?>

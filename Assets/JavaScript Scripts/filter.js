@@ -7,12 +7,6 @@ function filterOnDemand() {
             case 2:
                 filterWork(document.querySelector("table"), 7, false);
                 break;
-            case 3:
-                filterWork(document.querySelector("table"), 8, false);
-                break;
-            case 4:
-                filterWork(document.querySelector("table"), 8, true);
-                break;
         }
     }
 

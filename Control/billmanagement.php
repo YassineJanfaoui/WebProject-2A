@@ -1,12 +1,15 @@
 <?php 
 require '../config.php';
 class BillManagement{ 
-    public function listBills(){
-        $sql = "SELECT * FROM billing";
+    public function listBills($nb){
+        $sql = "SELECT * FROM billing LIMIT :nb , 4 ;";
         $db = config::getConnexion();
+        $list=$db->prepare($sql);
+        $list->bindValue(':nb',$nb*4,PDO::PARAM_INT);
         try{
-            $list = $db->query($sql);
-            return $list;
+            $list->execute();
+            $res=$list->fetchALL(PDO::FETCH_ASSOC);
+            return $res;
         }
         catch (Exception $e){
             die('Error: '.$e->getMessage());
@@ -135,6 +138,49 @@ class BillManagement{
         $query->bindValue(":bill_id",$bill_id);
         try{
             $query->execute();
+        }
+        catch(Exception $e){
+            echo "Error".$e->getMessage();
+        }
+    }
+    public function filterByPaid(){
+        $sql="SELECT * FROM billing WHERE paid_status=1;";
+        $db=config::getConnexion();
+        $query=$db->prepare($sql);
+        try{
+            $query->execute();
+            $res=$query->fetchALL(PDO::FETCH_ASSOC);
+            return $res;
+        }
+        catch(Exception $e){
+            echo "Error".$e->getMessage();
+        }
+    }
+    public function filterByUnpaid(){
+        $sql="SELECT * FROM billing WHERE paid_status=0;";
+        $db=config::getConnexion();
+        $query=$db->prepare($sql);
+        try{
+            $query->execute();
+            $res=$query->fetchALL(PDO::FETCH_ASSOC);
+            return $res;
+        }
+        catch(Exception $e){
+            echo "Error".$e->getMessage();
+        }
+    }
+    public function howManyRows(){
+        $sql="SELECT COUNT(*) AS nb FROM billing;";
+        $db=config::getConnexion();
+        $query=$db->prepare($sql);
+        try{
+            $query->execute();
+            $res=$query->fetchALL(PDO::FETCH_ASSOC);
+            $value=0;
+            foreach($res as $row){
+                $value=$row['nb'];
+            }
+            return $value;
         }
         catch(Exception $e){
             echo "Error".$e->getMessage();

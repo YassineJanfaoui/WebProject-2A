@@ -15,19 +15,12 @@
     <?php
     include "../Control/equipmentmanagement.php"; 
     $equipment = new EquipmentManagement(); 
-    $equipmentList = $equipment->listEquipment(); 
+    $equipmentList = $equipment->filterMinMax($_GET['min'],$_GET['max']); 
     ?>
     <form align="center" action="listEqById.php" method="GET">
         <b><label for="search_nav">Search by Equipment ID</label></b>
         <input type="text" id="eid" name="eid">
         <input type="submit" value="Search">
-    </form>
-    <form align="center" action="filterequipment.php" method="GET">
-        <b><label for="min">Filter equipment by price from</label></b>
-        <input type="text" id="min" name="min">
-        <b><label for="max">to</label></b>
-        <input type="text" id="max" name="max">
-        <input type="submit" value="Confirm">
     </form>
     <table>
         <thead>
@@ -55,6 +48,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div align="center"><a href="addEquipment.php">Add an equipment</a></div>
+    <div align="center"><a href="listEquipments.php">Return to equipment list</a></div>
 </body>
 </html>
