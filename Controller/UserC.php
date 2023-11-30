@@ -1,5 +1,5 @@
 <?php
-require "../config.php";
+require_once "../config.php";
 require "../Model/UserModel.php";
 class UserController
 {
@@ -78,6 +78,21 @@ class UserController
             } else {
                 return null;
             }
+        } catch (Exception $e) {
+            die("ERROR: " . $e->getMessage());
+        }
+    }
+    public function checkUserID($user_id)
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT * FROM users WHERE user_id = :user_id";
+        try {
+            $user=null;
+            $req = $db->prepare($sql);
+            $req->bindValue(':user_id', $user_id);
+            $req->execute();
+            $user = $req->fetch();
+            return $user;
         } catch (Exception $e) {
             die("ERROR: " . $e->getMessage());
         }

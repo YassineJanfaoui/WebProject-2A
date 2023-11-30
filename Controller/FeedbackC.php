@@ -1,5 +1,5 @@
 <?php
-require "../config.php";
+require_once "../config.php";
 class FeedbackController
 {
     public function getAllFeedbacks()
@@ -42,16 +42,43 @@ class FeedbackController
             die("ERROR: " . $e->getMessage());
         }
     }
+
+    public function getFeedbacksbyReview($review)
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT * FROM feedbacks WHERE review = :review";
+        try {
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':review', $review);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (Exception $e) {
+            die("ERROR: " . $e->getMessage());
+        }
+    }
+    public function getPositiveFeedbacks()
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT * FROM feedbacks WHERE review >3";
+        try {
+            $result = $db->query($sql);
+            return $result;
+        } catch (Exception $e) {
+            die("ERROR: " . $e->getMessage());
+        }
+    }
     public function addFeedback($feedback)
     {
-        $sql = "INSERT into feedbacks VALUES (NULL,:user_id,:description,:date_added)";
+        $sql = "INSERT into feedbacks VALUES (NULL,:user_id,:description,:date_added,:review)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
                 'user_id' => $feedback->getUserID(),
                 'description' => $feedback->getDescription(),
-                'date_added' => $feedback->getDateAdded()
+                'date_added' => $feedback->getDateAdded(),
+                'review' => $feedback->getReview()
             ]);
         } catch (Exception $e) {
             die("ERROR: " . $e->getMessage());
@@ -69,22 +96,5 @@ class FeedbackController
             die("ERROR: " . $e->getMessage());
         }
     }
-    public function checkUserID($user_id)
-    {
-        $db = config::getConnexion();
-        $sql = "SELECT * FROM users WHERE user_id = :user_id";
-        try {
-            $req = $db->prepare($sql);
-            $req->bindValue(':user_id', $user_id);
-            $req->execute();
-            $user = $req->fetch();
-            if ($user) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (Exception $e) {
-            die("ERROR: " . $e->getMessage());
-        }
-    }
+    
 }
