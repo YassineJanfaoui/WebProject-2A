@@ -2,14 +2,30 @@
 require '../config.php';
 
 class EquipmentManagement {
-    public function listEquipment() {
-        $sql = "SELECT * FROM equipment";
+    public function listEquipments(){
+        $sql = "SELECT * FROM equipment;";
         $db = config::getConnexion();
+        $list=$db->prepare($sql);
+        try{
+            $list->execute();
+            $res=$list->fetchALL(PDO::FETCH_ASSOC);
+            return $res;
+        }
+        catch (Exception $e){
+            die('Error: '.$e->getMessage());
+        }
+    }
+    public function howManyEquipmentRows(){
+        $sql = "SELECT COUNT(*) AS nb FROM equipment;";
+        $db = config::getConnexion();
+        
         try {
-            $list = $db->query($sql);
-            return $list;
-        } catch (Exception $e) {
-            die('Error: ' . $e->getMessage());
+            $query = $db->query($sql);  
+            $value = $query->fetchColumn();  
+    
+            return $value;
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
     public function showEquipmentByEqId($eq_id) {
@@ -88,5 +104,6 @@ class EquipmentManagement {
             echo "Error".$e->getMessage();
         }
     }
+    
 }
 ?>

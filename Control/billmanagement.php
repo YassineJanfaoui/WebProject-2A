@@ -2,7 +2,21 @@
 require '../config.php';
 class BillManagement{ 
     public function listBills($nb){
-        $sql = "SELECT * FROM billing LIMIT :nb , 4 ;";
+        $sql = "SELECT * FROM billing WHERE archived=0 LIMIT :nb , 4 ;";
+        $db = config::getConnexion();
+        $list=$db->prepare($sql);
+        $list->bindValue(':nb',$nb*4,PDO::PARAM_INT);
+        try{
+            $list->execute();
+            $res=$list->fetchALL(PDO::FETCH_ASSOC);
+            return $res;
+        }
+        catch (Exception $e){
+            die('Error: '.$e->getMessage());
+        }
+    }
+    public function listArchivedBills($nb){
+        $sql = "SELECT * FROM billing WHERE archived=1 LIMIT :nb , 4 ;";
         $db = config::getConnexion();
         $list=$db->prepare($sql);
         $list->bindValue(':nb',$nb*4,PDO::PARAM_INT);
@@ -16,7 +30,7 @@ class BillManagement{
         }
     }
     public function showBillByPatientId($patient_id) {
-        $sql = "SELECT * FROM billing WHERE patient_id = :patient_id";
+        $sql = "SELECT * FROM billing WHERE patient_id = :patient_id AND archived=0";
         $db = config::getConnexion();
         $query = $db->prepare($sql);
         $query->bindValue(':patient_id', $patient_id);
@@ -144,7 +158,7 @@ class BillManagement{
         }
     }
     public function filterByPaid(){
-        $sql="SELECT * FROM billing WHERE paid_status=1;";
+        $sql="SELECT * FROM billing WHERE paid_status=1 AND archived=0;";
         $db=config::getConnexion();
         $query=$db->prepare($sql);
         try{
@@ -157,7 +171,7 @@ class BillManagement{
         }
     }
     public function filterByUnpaid(){
-        $sql="SELECT * FROM billing WHERE paid_status=0;";
+        $sql="SELECT * FROM billing WHERE paid_status=0; AND archived=0";
         $db=config::getConnexion();
         $query=$db->prepare($sql);
         try{
@@ -170,7 +184,7 @@ class BillManagement{
         }
     }
     public function howManyRows(){
-        $sql="SELECT COUNT(*) AS nb FROM billing;";
+        $sql="SELECT COUNT(*) AS nb FROM billing WHERE archived=0;";
         $db=config::getConnexion();
         $query=$db->prepare($sql);
         try{
@@ -181,6 +195,48 @@ class BillManagement{
                 $value=$row['nb'];
             }
             return $value;
+        }
+        catch(Exception $e){
+            echo "Error".$e->getMessage();
+        }
+    }
+    public function howManyArchivedRows(){
+        $sql="SELECT COUNT(*) AS nb FROM billing WHERE archived=1;";
+        $db=config::getConnexion();
+        $query=$db->prepare($sql);
+        try{
+            $query->execute();
+            $res=$query->fetchALL(PDO::FETCH_ASSOC);
+            $value=0;
+            foreach($res as $row){
+                $value=$row['nb'];
+            }
+            return $value;
+        }
+        catch(Exception $e){
+            echo "Error".$e->getMessage();
+        }
+    }
+    
+    public function archiveBill($bill_id){
+        $sql="UPDATE billing SET archived=1 WHERE bill_id=:bill_id";
+        $db=config::getConnexion();
+        $query=$db->prepare($sql);
+        $query->bindValue(':bill_id',$bill_id);
+        try{
+            $query->execute();
+        }
+        catch(Exception $e){
+            echo "Error".$e->getMessage();
+        }
+    }
+    public function unarchiveBill($bill_id){
+        $sql="UPDATE billing SET archived=0 WHERE bill_id=:bill_id";
+        $db=config::getConnexion();
+        $query=$db->prepare($sql);
+        $query->bindValue(':bill_id',$bill_id);
+        try{
+            $query->execute();
         }
         catch(Exception $e){
             echo "Error".$e->getMessage();

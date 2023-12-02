@@ -66,7 +66,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <a href="listBills.php">Return to bill list</a>
+    <button type="button" onclick="window.location.href='listBills.php'">Return</button>
 
     <!-- Include the script at the end of the body or use DOMContentLoaded -->
     <script lang="javascript" src="../Assets/JavaScript Scripts/filter.js"></script>

@@ -6,19 +6,18 @@
     <title>Equipments List</title>
     <link rel="stylesheet" href="../Assets/CSS Styles/listEquipment.css"> 
 </head>
+    <?php
+    include "../Control/equipmentmanagement.php"; 
+    $equipment = new EquipmentManagement(); 
+    $equipmentList = $equipment->listEquipments(); 
+    ?>
 <body>
-
     <header>
         Equipment
     </header>
     
-    <?php
-    include "../Control/equipmentmanagement.php"; 
-    $equipment = new EquipmentManagement(); 
-    $equipmentList = $equipment->listEquipment(); 
-    ?>
     <form align="center" action="listEqById.php" method="GET">
-        <b><label for="search_nav">Search by Equipment ID</label></b>
+        <b><label for="eid">Search by Equipment ID</label></b>
         <input type="text" id="eid" name="eid">
         <input type="submit" value="Search">
     </form>
@@ -55,6 +54,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div align="center"><a href="addEquipment.php">Add an equipment</a></div>
+    <div align="center"><button type="button" onclick="window.location.href='addEquipment.php';">Add an Equipment</button></div>
+
 </body>
 </html>

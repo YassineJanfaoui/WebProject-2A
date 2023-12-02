@@ -6,6 +6,8 @@
     <title>Bills List</title>
     <link rel="stylesheet" href="../Assets/CSS Styles/listBills.css">
 </head>
+
+
 <body align="center">
 
     <header>
@@ -13,10 +15,12 @@
     </header>
 
     <?php
+    
     include "../Control/billmanagement.php";
     $b = new BillManagement();
     $tab = $b->filterByPaid();
     ?>
+    
     <form align="center" action="listBillById.php" method="GET">
         <b><label for="search_nav">Search by patient ID</label></b>
         <input type="text" id="pid" name="pid">
@@ -66,7 +70,7 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <a href="listBills.php">Return to bill list</a>
+    <button type="button" onclick="window.location.href='listBills.php'">Return</button>
 
     <!-- Include the script at the end of the body or use DOMContentLoaded -->
     <script lang="javascript" src="../Assets/JavaScript Scripts/filter.js"></script>
