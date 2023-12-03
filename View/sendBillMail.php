@@ -28,7 +28,7 @@ if (isset($_POST["id_patient"])) {
         $error = "Patient ID is required";
     }
 }
-$enablemail = 0;
+$enablemail = 1;
 if($enablemail == 1){
 
 $row=$b->getMailAndName($id_patient);

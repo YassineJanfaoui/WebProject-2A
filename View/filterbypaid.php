@@ -19,6 +19,14 @@
     include "../Control/billmanagement.php";
     $b = new BillManagement();
     $tab = $b->filterByPaid();
+    function statusColour($status){
+        if($status==1){
+            return "green";
+        }
+        else{
+            return "red";
+        }
+    }
     ?>
     
     <form align="center" action="listBillById.php" method="GET">
@@ -63,7 +71,7 @@
                     <td><?= $bill['total_stay_price'] ?></td>
                     <td><?= $bill['medication_cost'] ?></td>
                     <td><?= $bill['total_amount'] ?></td>
-                    <td><?= $bill['paid_status'] ?></td>
+                    <td style="background-color: <?php echo statusColour($bill['paid_status']) ?> ;" ><?= $bill['paid_status'] ?></td>
                     <td><button type="button" onclick="window.location.href='deleteBill.php?bill_id=<?php echo $bill['bill_id']; ?>'">Delete</button></td>
                     <td><button type="button" onclick="window.location.href='updateBill.php?bill_id=<?php echo $bill['bill_id']; ?>&consultation_price=<?php echo $bill['consultation_price']; ?>&surgery_price=<?php echo $bill['surgery_price']; ?>&total_stay_price=<?php echo $bill['total_stay_price']; ?>&medication_cost=<?php echo $bill['medication_cost']; ?>'">Update</button></td>
                 </tr>

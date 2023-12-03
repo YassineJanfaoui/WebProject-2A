@@ -3,6 +3,14 @@
     $b = new BillManagement();
     $income=$b->getIncome();
     $expenses=$b->getExpenses();
+    function statusColour($status){
+        if($status>=0){
+            return "green";
+        }
+        else{
+            return "red";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +47,7 @@ new Chart("myChart", {
         <tr>
             <td><?php echo $income ?></td>
             <td><?php echo $expenses ?></td>
-            <td><?php echo ($income-$expenses) ?></td>
+            <td style="background-color: <?php echo statusColour($income-$expenses) ?> ;"><?php echo ($income-$expenses) ?></td>
         </tr>
     </tbody>
 </table>
