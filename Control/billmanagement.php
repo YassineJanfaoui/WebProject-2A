@@ -242,5 +242,20 @@ class BillManagement{
             echo "Error".$e->getMessage();
         }
     }
+    public function getMailAndName($id) {
+        $sql = "SELECT email_address, first_name, family_name FROM users WHERE user_id=:id";
+        $db = config::getConnexion();
+        $query = $db->prepare($sql);
+        $query->bindValue(':id', $id);
+        
+        try {
+            $query->execute();
+            $res = $query->fetch(PDO::FETCH_ASSOC);
+            return $res;
+        } catch (Exception $e) {
+            echo "Error" . $e->getMessage();
+        }
+    }
+    
 }
 ?>

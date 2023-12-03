@@ -1,28 +1,3 @@
-<?php
-include '../Control/billmanagement.php';
-include '../Model/billinfo.php';
-//changes
-$error = "";
-
-$b = new BillManagement();
-
-if (isset($_POST["id_patient"])) {
-    if (!empty($_POST['id_patient'])) {
-        $id_patient = $_POST['id_patient'];
-
-        
-        if (is_numeric($id_patient)) {
-            $b->addBill($id_patient);
-            header('Location: listBills.php');
-            exit(); 
-        } else {
-            $error = "Invalid patient ID format";
-        }
-    } else {
-        $error = "Patient ID is required";
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,11 +16,8 @@ if (isset($_POST["id_patient"])) {
         <a href="listBills.php">Check Clinic Bill History</a>
         <hr>
 
-        <div id="error">
-            <?php echo $error; ?>
-        </div>
 
-        <form align="center" action="" method="POST">
+        <form align="center" action="sendBillMail.php" method="POST">
             <label for="patient_id">Patient ID :</label>
             <input type="text" id="patient_id" name="id_patient">
             <button type="submit">Submit</button>
