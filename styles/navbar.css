@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 1%;
+    width: 100%;
+    margin: 0 0 0 0;
+    text-align: center;
+    position: fixed;
+    background: #2B2D42;
+    color: white;
+    font-size: 20px;
+    top: -10px;
+    transition: top 0.2s ease-in-out;
+    left: -4px;
+    font-family: 'nunito black', sans-serif;
+    display: inline-flex;
+    z-index: 1;
+    border-bottom: 3px solid black;
+}
+
+header p {
+    margin-left: 45%;
+}
+.nav-up {
+    top: -100px !important;
+}
+
+/* The sidebar menu */
+.sidenav {
+    position: fixed;
+    top: -10px;
+    height: 100%;
+    /*z-index: 1;*/
+    left: 0;
+    background-color: #2B2D42;
+    overflow-x: hidden;
+    padding-top: 150px;
+    border-right:3px solid black ;
+
+}
+
+/* The navigation menu links */
+.sidenav a, select {
+    margin-top: 5%;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    color: #c0c0c0;
+    display: block;
+    font-family: 'nunito black', sans-serif;
+    font-size: 15px;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
+body {
+    background-color: #c0c0c0;
+}
