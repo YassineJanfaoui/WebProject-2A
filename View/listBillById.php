@@ -9,7 +9,7 @@
 <body align="center">
 
     <header>
-        Bills of patient with ID <?php echo $_GET['pid']?>
+        Bills of Mr  <?php echo $_GET['pid']?>
     </header>
 
     <?php

@@ -29,11 +29,11 @@ class BillManagement{
             die('Error: '.$e->getMessage());
         }
     }
-    public function showBillByPatientId($patient_id) {
-        $sql = "SELECT * FROM billing WHERE patient_id = :patient_id AND archived=0";
+    public function showBillByPatientId($name) {
+        $sql="SELECT * FROM billing WHERE patient_id IN (SELECT user_id FROM users WHERE first_name = :first_name);";
         $db = config::getConnexion();
         $query = $db->prepare($sql);
-        $query->bindValue(':patient_id', $patient_id);
+        $query->bindValue(':first_name', $name);
     
         try {
             $query->execute();
@@ -79,10 +79,10 @@ class BillManagement{
         }
     }
     
-    public function addBill($patient_id){
-        $sql="INSERT INTO billing (patient_id, bill_type, consultation_price, surgery_price, total_stay_price, medication_cost, total_amount)
+    public function addBill($name){
+        $sql="INSERT INTO billing (name, bill_type, consultation_price, surgery_price, total_stay_price, medication_cost, total_amount)
         SELECT
-            p.patient_id,
+            p.name,
             'Consultation + Surgery' AS bill_type,
             c.consultation_price,
             s.surgery_price,
@@ -90,16 +90,16 @@ class BillManagement{
             COALESCE(SUM(mc.frequency * m.selling_price), 0) AS medication_cost,
             c.consultation_price + s.surgery_price + r.price_per_night * p.nights_stayed + COALESCE(SUM(mc.frequency * m.selling_price), 0) AS total_amount
         FROM consultations c
-        JOIN patients p ON c.patient_id = p.patient_id
-        JOIN surgeries s ON c.patient_id = s.patient_id
+        JOIN patients p ON c.name = p.name
+        JOIN surgeries s ON c.name = s.name
         JOIN rooms r ON s.room_number = r.room_number
-        LEFT JOIN medical_care mc ON c.patient_id = mc.patient_id
+        LEFT JOIN medical_care mc ON c.name = mc.name
         LEFT JOIN medicines m ON mc.medicine_id = m.medicine_id
-        WHERE c.patient_id = :patient_id
-        GROUP BY p.patient_id, c.consultation_price, s.surgery_price, r.price_per_night, p.nights_stayed;";
+        WHERE c.name = :name
+        GROUP BY p.name, c.consultation_price, s.surgery_price, r.price_per_night, p.nights_stayed;";
         $db=config::getConnexion();
         $query=$db->prepare($sql);
-        $query->bindValue(':patient_id',$patient_id);
+        $query->bindValue(':name',$name);
         try{
             $query->execute();
         }

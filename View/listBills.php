@@ -69,7 +69,7 @@
     $tab = $b->listBills($pagenb);
     ?>
     <form align="center" action="listBillById.php" method="GET">
-        <b><label for="search_nav">Search by patient ID</label></b>
+        <b><label for="search_nav">Search by patient name</label></b>
         <input type="text" id="pid" name="pid">
         <input type="submit" value="Search">
     </form>
