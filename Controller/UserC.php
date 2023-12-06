@@ -3,17 +3,33 @@ require_once "../config.php";
 require "../Model/UserModel.php";
 class UserController
 {
-    public function listUsers($sort = null)
+    public function listUsers($sort = null, $page = 1, $itemsPerPage = 20)
     {
         $db = config::getConnexion();
+        $offset = ($page - 1) * $itemsPerPage;
         if ($sort == null) {
-            $sql = "SELECT * FROM users";
-        } else {
-            $sql = "SELECT * FROM users ORDER BY type";
+            $sql = "SELECT * FROM users LIMIT $offset, $itemsPerPage";
+        } elseif ($sort == "type") {
+            $sql = "SELECT * FROM users ORDER BY type LIMIT $offset, $itemsPerPage";
+        }
+        elseif ($sort == "enabled") {
+            $sql = "SELECT * FROM users ORDER BY enabled LIMIT $offset, $itemsPerPage";
         }
         try {
             $result = $db->query($sql);
             return $result;
+        } catch (Exception $e) {
+            die("ERROR: " . $e->getMessage());
+        }
+    }
+    public function getTotalUsers()
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT COUNT(*) AS total FROM users";
+        try {
+            $result = $db->query($sql);
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+            return $row['total'];
         } catch (Exception $e) {
             die("ERROR: " . $e->getMessage());
         }
@@ -46,7 +62,7 @@ class UserController
     }
     public function addUser($user)
     {
-        $sql = "INSERT into users VALUES (NULL,:username,:password,:first_name,:family_name,:email_address,:contact_number,'patient',1)";
+        $sql = "INSERT into users VALUES (NULL,:username,:password,:first_name,:family_name,:email_address,:contact_number,'patient',0)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
