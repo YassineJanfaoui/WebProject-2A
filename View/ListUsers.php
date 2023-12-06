@@ -4,7 +4,12 @@ $c = new UserController();
 $test = null;
 if (isset($_GET["sort"]))
 $test = $_GET["sort"];
-$tab = $c->listUsers($test);
+$itemsPerPage = 10;
+$currentPage = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$tab = $c->listUsers($test, $currentPage, $itemsPerPage);
+$totalUsers = $c->getTotalUsers();
+$totalPages = ceil($totalUsers / $itemsPerPage);
+
 session_start();
 ?>
 <html>
@@ -23,6 +28,7 @@ session_start();
         </header>
         <!-- Side navigation -->
         <div class="sidenav">
+            <a href="AdminHomePage.php">Admin HomePage</a>
             <a href="ListFeedback.php">List Feedback</a>
             <a href="ListUsers.php">List Users</a>
             <a href="#">Add Doctor</a>
@@ -50,13 +56,21 @@ session_start();
                         }
                         ?>
             >Role</a></th>
-            <th>status</th>
+            <th><a style=" text-decoration: none; color:#fff;" href=<?php
+                        if ($test == "enabled") {
+                            echo "\"ListUsers.php?sort=\"";
+                        } else {
+                            echo "\"ListUsers.php?sort=enabled\"";
+                        }
+                        ?>
+            >Enabled</a>
+        </th>
             <th>Ban User</th>
         </tr>
         <?php
         foreach ($tab as $user) {
         ?>
-            <tr>
+            <tr <?php if($user['enabled'] == 0) echo "style='background-color:red;'";?> >
                 <td><?php echo $user['user_id']; ?></td>
                 <td><?php echo $user['username']; ?></td>
                 <td><?php echo $user['first_name']; ?></td>
@@ -78,6 +92,45 @@ session_start();
         }
         ?>
     </table>
+    <div id="paginationBlock">
+            <?php
+            $range = 2;
+            $sortParams = "";
+            if ($test == "type") {
+                $sortParams = "&sort=type";
+            }
+            elseif ($test == "enabled") {
+                $sortParams = "&sort=enabled";
+            }
+
+            if($totalPages > 1)
+            {
+            if ($currentPage > 1) {
+            ?>
+                <a class="pagination" href="ListUsers.php?page=<?php echo $currentPage - 1;echo $sortParams; ?>">Prev</a>
+                <?php
+            }
+            for ($i = $currentPage - $range; $i < $currentPage; $i++) {
+                if ($i > 0) {
+                ?>
+                    <a class="pagination" href="ListUsers.php?page=<?php echo $i;echo $sortParams; ?>"><?php echo $i; ?></a>
+                <?php
+                }
+            }
+            for ($i = $currentPage; $i <= $currentPage + $range && $i < $totalPages + 1; $i++) {
+                ?>
+                <a class="pagination" <?php if ($i == $currentPage) echo "style=text-decoration:underline;color:#8b0000;"; ?> href="ListUsers.php?page=<?php echo $i; echo $sortParams; ?>"><?php echo $i; ?></a>
+            <?php
+            }
+            if ($currentPage < $totalPages) {
+            ?>
+                <a class="pagination" href="ListUsers.php?page=<?php echo $currentPage + 1;echo $sortParams; ?>">Next</a>
+            <?php
+            }
+        }
+            ?>
+
+        </div>
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
