@@ -10,36 +10,37 @@ $subject = "Thank You.";
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["first_name"]) && isset($_POST["family_name"]) && isset($_POST["email_address"]) && isset($_POST["contact_number"])) //input control
 {
   if (!empty($_POST["username"]) && !empty($_POST["password"]) && !empty($_POST["first_name"]) && !empty($_POST["family_name"]) && !empty($_POST["email_address"]) && !empty($_POST["contact_number"])) {
+    if ($userC->getUser($_POST["username"]) == null) {
+      $user = new User(null, $_POST["username"], $_POST["password"], $_POST["first_name"], $_POST["family_name"], $_POST["email_address"], $_POST["contact_number"], "patient", null);    //adding values to new user object
+      $userC->addUser($user);
 
-    $user = new User(null, $_POST["username"], $_POST["password"], $_POST["first_name"], $_POST["family_name"], $_POST["email_address"], $_POST["contact_number"], "patient", null);    //adding values to new user object
-    $userC->addUser($user);
+      session_start();
+      $user = $userC->getUser($_POST["username"]);
+      $_SESSION["user_id"] = $user->getUserID();
+      $_SESSION["username"] = $user->getUsername();
+      $_SESSION["type"] = $user->getRole();
 
-    session_start();
-    $user = $userC->getUser($_POST["username"]);
-    $_SESSION["user_id"] = $user->getUserID();
-    $_SESSION["username"] = $user->getUsername();
-    $_SESSION["type"] = $user->getRole();
-
-    $to = $_POST["email_address"];
-    $message = "Thank You".$_POST["first_name"]." for putting your trust in us and joining freud clinic.\n
-    We will try our best to provide you with the best service possible.\n
-    We hope you have a great day.\n
+      $to = $_POST["email_address"];
+      $message = "Thank You " . $_POST["first_name"] . ", for putting your trust in us and joining freud clinic.\nWe will try our best to provide you with the best service possible.\nPlease click on this link to Verify your account: http://localhost/ProjectWeb/View/ValidateUser.php?id=" . $_SESSION["user_id"] . "\nWe hope you have a great day.\n
     -Freud Clinic Team";
-    $headers = "From: no-reply@gmail.com" . "\r\n" .
-      "Reply-To: " . $to . "\r\n";
-    $mailSuccess = mail($to, $subject, $message, $headers);
-    if ($mailSuccess) {
-      echo "Email sent successfully";
+      $headers = "From: no-reply@gmail.com" . "\r\n" .
+        "Reply-To: " . $to . "\r\n";
+      $mailSuccess = mail($to, $subject, $message, $headers);
+      if ($mailSuccess) {
+        echo "Email sent successfully";
+        header('Location:index.php');
+      } else {
+        echo "Email sending failed";
+      }
     } else {
-      echo "Email sending failed";
+      $error = "Username already exists";
     }
-
-    header('Location:index.php');
-
   } else {
     $error = "Missing information";
   }
-} ?>
+} else
+  $error = "Missing information";
+?>
 
 
 
@@ -54,6 +55,17 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["firs
   <link rel="stylesheet" href="../assets/vendor/animate/animate.css">
   <link rel="stylesheet" href="../assets/css/theme.css">
   <link rel="stylesheet" href="../styles/styleAddUser.css" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script type="text/javascript">
+    var onloadCallback = function() {
+      grecaptcha.render('g-recaptcha', {
+        'sitekey': '6Lfb2ygpAAAAALdQ1lef4OmoUTdaxgvre-WpTYPz',
+        'callback': captcha_filled,
+      'expired-callback': captcha_expired,
+
+      });
+    };
+  </script>
 </head>
 
 <body>
@@ -142,7 +154,10 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["firs
 
     <label for="name" class="Input_title">Contact number:</label><br />
     <input type="text" name="contact_number" class="input_box" placeholder="Your contact number here" id="num" required /><br />
-
+            <div class="input_box">
+    <div class="g-recaptcha" style="position:relative;left:250px;" data-callback="captcha_filled"
+   data-expired-callback="captcha_expired" data-sitekey="6Lfb2ygpAAAAALdQ1lef4OmoUTdaxgvre-WpTYPz"></div></div>
+          
     <input type="submit" name="submit" id="submit" value="Register" />
     <footer class="page-footer">
       <div class="container">
@@ -198,6 +213,8 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["firs
       </div>
     </footer>
     <script src="../scripts/UserControl.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>
 </body>
 
 
