@@ -25,7 +25,7 @@ if (isset($_POST["id_patient"])) {
             $error = "Invalid patient ID format";
         }
     } else {
-        $error = "Patient ID is required";
+        echo "Something went wrong";
     }
 }
 $enablemail = 0;
@@ -53,7 +53,7 @@ $mail = new PHPMailer(true);
     $mail->setFrom('haroun.zriba@esprit.tn', "Freud Clinic");
     $mail->addAddress($row['email_address'], $row['first_name']);
     $mail->Subject = "A new bill has been issued to your account";
-    $mail->Body = "Mr {$row['first_name']} {$row['family_name']} you have a new bill, please check it out on our Freud Clinic website at http://localhost/View/payment.html where you can pay online.";
+    $mail->Body = "Mr {$row['first_name']} {$row['family_name']}, you have a new bill, please check it out on our Freud Clinic website at http://localhost/View/payment.html where you can pay online.";
 
 // Send
 if ($mail->send()) {
