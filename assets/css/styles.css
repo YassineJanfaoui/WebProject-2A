@@ -1,0 +1,326 @@
+/* Define the color palette */
+:root {
+  --space-cadet: #303256;
+  --persian-green: #4f988d;
+  --silver: #c0c0c0;
+  --white-smoke: #f5f5f5; /* Light background for form */
+  --gunmetal: #212529; /* Text color for dark backgrounds */
+}
+
+body {
+  background-color: var(--white-smoke);
+  color: var(--gunmetal);
+}
+
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Style the side navigation */
+.navbar {
+  height: 97%;
+  width: 275px;
+  position: fixed;
+  z-index: 1;
+  top: 15px;
+  left: 20px;
+  background-color: var(--space-cadet);
+  overflow-x: hidden;
+  border-radius: 20px;
+  padding-top: 200px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 15px; /* Reset padding to remove space inside the navbar */
+  margin: 0; /* Reset margin to align with the navbar edges */
+  margin-right: 5px;
+}
+
+.navbar ul li {
+  padding: 20px;
+  border: 1px solid var(--persian-green);
+  border-radius: 50px; /* This will give you rounded corners */
+  margin-bottom: 15px; /* This adds space between the list items */
+  background-color: var(--persian-green);
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  font: 1.2em Arial, sans-serif;
+}
+
+/* This is to remove the bottom margin from the last list item to avoid extra space at the end 
+.navbar ul li:last-child {
+  margin-bottom: 0;
+} */
+
+/* Main content */
+.main-content {
+  margin-left: 250px; /* Same as the width of the navbar */
+  padding: 20px;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Full height */
+}
+
+/* The form itself */
+.form-container {
+  background-color: var(--white-smoke);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Style the form inputs and labels */
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--gunmetal);
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid var(--persian-green);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+.form-container input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--persian-green);
+  color: var(--white-smoke);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.form-container input[type="submit"]:hover {
+  background-color: var(--space-cadet);
+}
+
+/* Style the medicine table */
+.medicine-table {
+  width: 100%;
+  max-width: 1300px; /* Adjust based on your preference */
+  margin-top: 20px;
+  border-collapse: separate; /* This is necessary for border spacing */
+  border-spacing: 0; /* Removes default spacing */
+  border-radius: 25px;
+  overflow: hidden; /* Hides the overflow to maintain the table's border radius */
+}
+
+.medicine-table th,
+.medicine-table td {
+  text-align: center;
+  /* Remove border-radius from individual cells */
+}
+
+.medicine-table th {
+  background-color: var(--space-cadet);
+  color: var(--silver);
+  padding: 15px;
+}
+
+.medicine-table tr {
+  background-color: #f2f2f2; /* Light gray background for table rows */
+}
+
+.medicine-table tr:nth-child(odd) {
+  background-color: #e9e9e9; /* Slightly darker for alternate rows */
+}
+
+.medicine-table td {
+  border-radius: 10px; /* Rounded corners for cells */
+}
+
+/* Aligns content to the top */
+.dropdown-container {
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+  /* Adjust the space between dropdowns */
+  margin-bottom: 20px;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-container select {
+  padding: 10px;
+  border-radius: 15px;
+  border: 2px solid var(--persian-green);
+  background-color: var(--white-smoke);
+  color: var(--gunmetal);
+  font-size: 16px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  /* Adjust padding to leave space for the arrow */
+  padding-right: 30px;
+}
+
+/* Create a custom arrow */
+.dropdown-wrapper::after {
+  content: "\2335"; /* Downward pointing caret symbol */
+  position: absolute;
+  right: 9px; /* Adjust as needed */
+  top: 45%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Ensures the arrow doesn't interfere with the dropdown functionality */
+  color: var(--persian-green); /* Color of the arrow */
+  font-size: 22px; /* Adjust size as needed */
+  font-weight: bolder;
+}
+.dropdown-container select:focus {
+  outline: none;
+  border-color: var(--space-cadet);
+}
+
+.dropdown-container select:hover {
+  border-color: var(--persian-green);
+}
+
+.schedule-table {
+  width: 100%; /* Full width of container */
+  border-collapse: separate; /* Separate borders for rounded corners */
+  border-spacing: 0.5em;
+  padding-top: 50px;
+  margin: 0rem auto;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 2px solid var(--persian-green); /* Border color from your palette */
+  text-align: center;
+  padding: 0.5rem 1.2rem; /* Increased padding within cells */
+  border-radius: 20px;
+  background-color: var(--white-smoke); /* Cell background from your palette */
+  position: relative; /* Position relative so that pseudo-element positions absolutely within it */
+}
+
+.schedule-table th {
+  background-color: var(
+    --persian-green
+  ); /* Header background from your palette */
+  color: white;
+}
+
+.schedule-table td.clickable {
+  cursor: pointer;
+  background-color: var(--white-smoke);
+}
+
+.schedule-table td.non-clickable {
+  cursor: default;
+  background-color: #b0b0b0; /* Some gray color */
+}
+
+.clicked-cell {
+  animation: clickAnimation 0.15s; /* Animation name and duration */
+  background-color: var(--persian-green);
+}
+
+.booked {
+  background-color: #ddd; /* Gray color */
+  cursor: default;
+}
+
+.success-messages {
+  color: green;
+  /* Add more styling as needed */
+}
+
+#paginator {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination-link,
+.current-page {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: 2px solid var(--persian-green);
+  color: #333;
+  text-decoration: none;
+  border-radius: 15px;
+  background-color: #f8f8f8;
+}
+
+.pagination-link:hover,
+.pagination-link:focus {
+  background-color: #e9e9e9;
+  border-color: #ccc;
+}
+
+.current-page {
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+@keyframes clickAnimation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1); /* Slightly enlarges the cell */
+  }
+}
+
+/* On screens that are less than 400 pixels, make the navbar overlay the content */
+@media screen and (max-width: 400px) {
+  .navbar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .main-content {
+    margin-left: 500px;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  .medicine-table {
+    max-width: 100%;
+  }
+
+  .dropdown-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* On screens that are less than 700 pixels wide, make the navbar narrower and the main content wider */
+@media screen and (max-width: 700px) {
+  .navbar {
+    width: 100px;
+  }
+
+  .main-content {
+    margin-left: 100px;
+  }
+}
