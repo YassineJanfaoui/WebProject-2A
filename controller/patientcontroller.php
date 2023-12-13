@@ -10,11 +10,32 @@ require_once '../../config.php';
 
 class PatientsController
 {
-
+    public function listDiets()
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT type_name FROM diet_type";
+        try {
+            $diets = $db->query($sql);
+            return $diets;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
     public function listPatients()
     {
         $db = config::getConnexion();
         $sql = "SELECT * FROM patients";
+        try {
+            $patients = $db->query($sql);
+            return $patients;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+    public function listsomePatients()
+    {
+        $db = config::getConnexion();
+        $sql = "SELECT * FROM users WHERE user_id NOT IN (SELECT patient_id FROM patients)";
         try {
             $patients = $db->query($sql);
             return $patients;
