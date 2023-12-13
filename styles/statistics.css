@@ -1,0 +1,32 @@
+#stats
+{
+    display:flex;
+    flex-direction: row;
+    width: 80%;
+    margin-left:10%;
+    height: 100%;
+    float: left;
+    background-color: #c0c0c0;
+}
+#chartContainer
+{
+    width: 75%;
+    height: 100%;
+    margin:10%;
+}
+#myChart
+{
+    width: 75%;
+    height: 100%;
+}
+
+#chartContainer1
+{
+    width: 75%;
+    height: 100%;
+    margin-right:10%;
+}
+.canvasjs-chart-canvas
+{
+   /* background-color: #c0c0c0;*/
+}

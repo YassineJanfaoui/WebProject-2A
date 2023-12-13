@@ -1,0 +1,80 @@
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+  
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.Input_title, #formTitle{
+    font-family:'nunito black' ,sans-serif;
+    font-weight: bold;
+    margin: 8px 10% 5% 10%;
+    color: #2b2d42;
+    text-align: center;
+    position: relative;
+    top: -50px;
+}
+#formTitle{
+	text-align: center;
+    position: relative;
+    top: 30px;
+}
+.Input_title{
+    font-size: 20px;
+    margin-left : 20%;
+    margin-top:10px;
+}
+
+.input_box{
+    position: relative;
+    top: -50px;
+    width: 60%;
+    padding: 12px 20px;
+    margin-left : 20%;
+    
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 2px solid #C0C0C0;
+}
+#shift {
+    position: relative;
+    border-radius: 120px;
+    top:-80px;
+    left:81px;
+    padding: 12px 20px;
+    width: 60%;
+}
+.submit {
+    position: relative;
+    top: -40px;
+    background-color: #2B2D42;
+    color: white;
+    padding: 12px 20px;
+    margin-left : 20%;
+    border-radius: 12px;
+    border: 2px solid #C0C0C0;
+    cursor: pointer;
+    width: 60%;
+    font-family:'nunito black' ,sans-serif;
+}
+.error{
+    position: relative;
+    top: 20px;
+}
+body {
+    background: #c0c0c0;
+    font-family:'nunito black' ,sans-serif;
+    
+}
