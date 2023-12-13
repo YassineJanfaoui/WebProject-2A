@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../../Controller/patientcontroller.php';
+include "../../controller/roomcontroller.php";
 include '../../model/patients.php';
 include '../../controller/UserC.php';
 
@@ -11,8 +12,10 @@ $patient = null;
 
 
 $patientsController = new PatientsController();
-$userC = new UserController();
-$tab = $userC->listUsers();
+$roomC = new RoomController();
+$tab = $patientsController->listsomePatients();
+$diets = $patientsController->listDiets();
+$rooms = $roomC->listRooms();
 if (
     isset($_POST["patient_id"]) &&
     isset($_POST["date_of_birth"]) &&
@@ -193,9 +196,6 @@ if (
                         <select name="typep" id="typep">
                             <option value="patient">patient</option>
                             <option value="inpatient">inpatient</option>
-
-
-
                         </select>
                         <span id="erreurTypep" style="color: red"></span>
                     </td>
@@ -203,7 +203,15 @@ if (
                 <tr>
                     <td><label for="room_number">Room Number:</label></td>
                     <td>
-                        <input type="number" id="room_number" name="room_number" pattern="[1-9][0-9]*" min="1" />
+                        <select name="room_number" id="room_number">
+                            <?php
+                            foreach ($rooms as $r) {
+                            ?>
+                                <option value="<?php echo $r['room_number']; ?>"><?php echo $r['room_number']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                         <span id="erreurRoomNumber" style="color: red"></span>
                     </td>
                 </tr>
@@ -217,7 +225,15 @@ if (
                 <tr>
                     <td><label for="diet_type">Diet Type:</label></td>
                     <td>
-                        <input type="text" id="diet_type" name="diet_type" />
+                        <select name="diet_type" id="diet_type">
+                            <?php
+                            foreach ($diets as $d) {
+                            ?>
+                                <option value="<?php echo $d['type_name']; ?>"><?php echo $d['type_name']; ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
                         <span id="erreurDietType" style="color: red"></span>
                     </td>
                 </tr>
