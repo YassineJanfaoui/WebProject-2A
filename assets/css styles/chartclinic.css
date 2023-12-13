@@ -1,0 +1,29 @@
+body {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    background-color: #C0C0C0;
+}
+table {
+    width: 80%;
+    margin: 10px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #2B2D42;
+}
+
+th {
+    background-color: #2B2D42;
+    color: white;
+}
+
+tr:hover {
+    background-color: lightsteelblue;
+}
