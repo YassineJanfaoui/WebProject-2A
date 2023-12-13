@@ -80,8 +80,9 @@ $tab = $b->showBillByPatientId($_SESSION['user_id']);
                 echo '<li class="nav-item"><a class="btn btn-primary ml-lg-3" href="logout.php">LogOut</a></li>';
               } else {
                 echo '<li class="nav-item"><select onchange="location = this.value;" style="border: none !important;outline: none !important;background-color: #ffffff;color:#c0c0c0;">';
-                echo '<option style="color:#c0c0c0;" value="">Welcome: '.$_SESSION["username"].'</option>';
+                echo '<option style="color:#c0c0c0;" disabled selected>Welcome: '.$_SESSION["username"].'</option>';
                 echo '<option value="med.php" style="color:#c0c0c0;">Medical Care</option>';
+                echo '<option value="consultations_scheduling.php" style="color:#c0c0c0;">Schedule a consultation</option>';
                 echo '<option value="showpatient.php" style="color:#c0c0c0;">Your information</option>';
                 echo '</select></li>';
                 echo '<li class="nav-item"><a class="nav-link" href="bills.php">Payment';

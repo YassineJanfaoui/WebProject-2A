@@ -59,7 +59,7 @@ $tabbb = $b->listpatientdetails($_SESSION['user_id']);
 
   <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="index.php"><span class="text-primary">One</span>-Health</a>
+        <a class="navbar-brand" href="index.php"><span class="text-primary">Freud Clinic</a>
 
         <div class="collapse navbar-collapse" id="navbarSupport">
           <ul class="navbar-nav ml-auto">
@@ -79,15 +79,16 @@ $tabbb = $b->listpatientdetails($_SESSION['user_id']);
             if (!isset($_SESSION["user_id"]) || empty($_SESSION["user_id"])) {
               echo '<li class="nav-item"><a class="btn btn-primary ml-lg-3" href="login.php">Login / Register</a></li>';
             } else {
-              if ($_SESSION["type"] == "admin") {
+              if ($_SESSION["type"] == "admin" || $_SESSION["type"] == "doctor") {
                 echo '<li class="nav-item"><a class="nav-link" href="../back/aadminhomepage.php">Welcome: ';
                 echo $_SESSION["username"];
                 echo '</a></li>';
                 echo '<li class="nav-item"><a class="btn btn-primary ml-lg-3" href="logout.php">LogOut</a></li>';
               } else {
                 echo '<li class="nav-item"><select onchange="location = this.value;" style="border: none !important;outline: none !important;background-color: #ffffff;color:#c0c0c0;">';
-                echo '<option style="color:#c0c0c0;" value="">Welcome: '.$_SESSION["username"].'</option>';
+                echo '<option style="color:#c0c0c0;" disabled selected>Welcome: '.$_SESSION["username"].'</option>';
                 echo '<option value="med.php" style="color:#c0c0c0;">Medical Care</option>';
+                echo '<option value="consultations_scheduling.php" style="color:#c0c0c0;">Schedule a consultation</option>';
                 echo '<option value="showpatient.php" style="color:#c0c0c0;">Your information</option>';
                 echo '</select></li>';
                 echo '<li class="nav-item"><a class="nav-link" href="bills.php">Payment';
